@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+
+[[mods]]
+modId="survivalspectator"
+version="1.0.0"
+displayName="Survival Spectator"
+logoFile="survivalspectator.png"
+credits="Thanks to myself for having this idea :)"
+authors="NorthWestWind"
+description='''
+Forge port of Survival Spectator
+'''
+
+[[dependencies.survivalspectator]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.survivalspectator]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
