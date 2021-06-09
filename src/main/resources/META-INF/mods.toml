@@ -1,13 +1,13 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[32,)"
 license="All rights reserved"
 
 [[mods]]
 modId="survivalspectator"
-version="1.0.0"
+version="1.0.1"
 displayName="Survival Spectator"
 logoFile="survivalspectator.png"
-updateJSONURL="https://github.com/North-West-Wind/ForgeSurvivalSpectator/raw/main/update.json"
+updateJSONURL="https://raw.githubusercontent.com/North-West-Wind/ForgeSurvivalSpectator/main/update.json"
 displayURL="https://github.com/North-West-Wind/ForgeSurvivalSpectator"
 credits="Thanks to myself for having this idea :)"
 authors="NorthWestWind"
@@ -18,12 +18,12 @@ Forge port of Survival Spectator
 [[dependencies.survivalspectator]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
+    versionRange="[32,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.survivalspectator]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="[1.16.1,1.17)"
     ordering="NONE"
     side="BOTH"
