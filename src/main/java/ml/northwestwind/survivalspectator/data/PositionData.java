@@ -91,6 +91,7 @@ public class PositionData extends WorldSavedData {
         positions.put(player.getUUID(), Pair.of(player.position(), player.level.dimension()));
         FakePlayerEntity fake = FakePlayerEntity.createFake(player.getScoreboardName(), player.getServer(), player.getX(), player.getY(), player.getZ(), player.yRot, player.xRot, player.level.dimension(), GameType.SURVIVAL);
         if (fake != null) playerPlaceholders.put(player.getUUID(), fake.getUUID());
+        player.setGameMode(GameType.SPECTATOR);
     }
 
     public void toSurvival(ServerPlayerEntity player) {
@@ -107,8 +108,8 @@ public class PositionData extends WorldSavedData {
             player.teleportToWithTicket(pos.x, pos.y, pos.z);
         }
         positions.remove(player.getUUID());
-
         playerPlaceholders.remove(player.getUUID());
+        player.setGameMode(GameType.SURVIVAL);
         if (fake == null) return;
         if (fake.removed) player.kill();
         fake.kill();

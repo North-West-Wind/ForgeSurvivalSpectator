@@ -4,7 +4,7 @@ license="All rights reserved"
 
 [[mods]]
 modId="survivalspectator"
-version="1.0.1"
+version="1.0.2"
 displayName="Survival Spectator"
 logoFile="survivalspectator.png"
 updateJSONURL="https://raw.githubusercontent.com/North-West-Wind/ForgeSurvivalSpectator/main/update.json"

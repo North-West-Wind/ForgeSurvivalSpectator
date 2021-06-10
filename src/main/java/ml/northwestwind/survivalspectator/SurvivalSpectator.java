@@ -36,13 +36,8 @@ public class SurvivalSpectator {
             PositionData data = PositionData.get((ServerWorld) entity.level);
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
             boolean spectating = player.isSpectator();
-            if (spectating) {
-                player.setGameMode(GameType.SURVIVAL);
-                data.toSurvival(player);
-            } else {
-                player.setGameMode(GameType.SPECTATOR);
-                data.toSpectator(player);
-            }
+            if (spectating) data.toSurvival(player);
+            else data.toSpectator(player);
             data.setDirty();
             return 1;
         }
