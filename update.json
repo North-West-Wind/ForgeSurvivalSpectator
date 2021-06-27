@@ -3,38 +3,43 @@
     "1.16.5": {
       "1.0.0": "Release of the mod",
       "1.0.1": "Warp back to dimension + Fake player",
-      "1.0.2": "Fixed not changing gamemode in forced warps"
+      "1.0.2": "Fixed not changing gamemode in forced warps",
+      "1.0.3": "Fixed fake player duplication"
     },
     "1.16.4": {
       "1.0.0": "Release of the mod",
       "1.0.1": "Warp back to dimension + Fake player",
-      "1.0.2": "Fixed not changing gamemode in forced warps"
+      "1.0.2": "Fixed not changing gamemode in forced warps",
+      "1.0.3": "Fixed fake player duplication"
     },
     "1.16.3": {
       "1.0.0": "Release of the mod",
       "1.0.1": "Warp back to dimension + Fake player",
-      "1.0.2": "Fixed not changing gamemode in forced warps"
+      "1.0.2": "Fixed not changing gamemode in forced warps",
+      "1.0.3": "Fixed fake player duplication"
     },
     "1.16.2": {
       "1.0.0": "Release of the mod",
       "1.0.1": "Warp back to dimension + Fake player",
-      "1.0.2": "Fixed not changing gamemode in forced warps"
+      "1.0.2": "Fixed not changing gamemode in forced warps",
+      "1.0.3": "Fixed fake player duplication"
     },
     "1.16.1": {
       "1.0.0": "Release of the mod",
       "1.0.1": "Warp back to dimension + Fake player",
-      "1.0.2": "Fixed not changing gamemode in forced warps"
+      "1.0.2": "Fixed not changing gamemode in forced warps",
+      "1.0.3": "Fixed fake player duplication"
     },
     "promos": {
-      "1.16.5-latest": "1.0.2",
-      "1.16.5-recommended": "1.0.2",
-      "1.16.4-latest": "1.0.2",
-      "1.16.4-recommended": "1.0.2",
-      "1.16.3-latest": "1.0.2",
-      "1.16.3-recommended": "1.0.2",
-      "1.16.2-latest": "1.0.2",
-      "1.16.2-recommended": "1.0.2",
-      "1.16.1-latest": "1.0.2",
-      "1.16.1-recommended": "1.0.2"
+      "1.16.5-latest": "1.0.3",
+      "1.16.5-recommended": "1.0.3",
+      "1.16.4-latest": "1.0.3",
+      "1.16.4-recommended": "1.0.3",
+      "1.16.3-latest": "1.0.3",
+      "1.16.3-recommended": "1.0.3",
+      "1.16.2-latest": "1.0.3",
+      "1.16.2-recommended": "1.0.3",
+      "1.16.1-latest": "1.0.3",
+      "1.16.1-recommended": "1.0.3"
     }
   }

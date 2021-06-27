@@ -5,7 +5,9 @@
   "refmap": "modid.refmap.json",
   "mixins": [
     "EntityMixin",
-    "PlayerManagerMixin"
+    "IntegratedServerMixin",
+    "PlayerManagerMixin",
+    "ServerPlayNetHandlerMixin"
   ],
   "minVersion": "0.8"
 }

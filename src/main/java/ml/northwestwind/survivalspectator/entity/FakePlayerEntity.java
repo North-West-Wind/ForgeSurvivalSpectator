@@ -1,7 +1,6 @@
 package ml.northwestwind.survivalspectator.entity;
 
 import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 import ml.northwestwind.survivalspectator.data.PositionData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,16 +29,17 @@ public class FakePlayerEntity extends ServerPlayerEntity
     public Runnable fixStartingPosition = () -> {};
     public boolean isAShadow;
 
-    public static FakePlayerEntity createFake(String username, MinecraftServer server, double d0, double d1, double d2, double yaw, double pitch, RegistryKey<World> dimensionId, GameType gamemode)
+    public static FakePlayerEntity createFake(String username, MinecraftServer server, double d0, double d1, double d2, double yaw, double pitch, RegistryKey<World> dimensionId, GameType gamemode, UUID uuid)
     {
         ServerWorld worldIn = server.getLevel(dimensionId);
         PlayerInteractionManager interactionManagerIn = new PlayerInteractionManager(worldIn);
         GameProfile profile = server.getProfileCache().get(username);
         if (profile == null) return null;
-        GameProfile gameprofile = new GameProfile(UUID.randomUUID(), username);
+        GameProfile gameprofile = new GameProfile(uuid != null ? uuid : UUID.randomUUID(), username);
         if (profile.getProperties().containsKey("textures")) {
-            gameprofile.getProperties().put("textures", (Property) profile.getProperties().get("textures"));
-            gameprofile = SkullTileEntity.updateGameprofile(gameprofile);
+            GameProfile finalGameprofile = gameprofile;
+            profile.getProperties().get("textures").forEach(property -> finalGameprofile.getProperties().put("textures", property));
+            gameprofile = SkullTileEntity.updateGameprofile(finalGameprofile);
         }
         FakePlayerEntity instance = new FakePlayerEntity(server, worldIn, gameprofile, interactionManagerIn, false);
         instance.fixStartingPosition = () -> instance.moveTo(d0, d1, d2, (float) yaw, (float) pitch);
@@ -122,14 +122,13 @@ public class FakePlayerEntity extends ServerPlayerEntity
     @Override
     public void kill()
     {
-        kill(new StringTextComponent("Killed"));
+        kill(new StringTextComponent("Disconnect fake player"));
     }
 
     public void kill(ITextComponent reason)
     {
         shakeOff();
-        this.server.tell(new TickDelayedTask(this.server.getTickCount(), () -> this.connection.disconnect(reason)));
-        remove();
+        this.server.tell(new TickDelayedTask(this.server.getTickCount(), () -> this.connection.onDisconnect(reason)));
     }
 
     @Override

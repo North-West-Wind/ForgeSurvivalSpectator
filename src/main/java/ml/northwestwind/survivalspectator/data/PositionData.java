@@ -5,6 +5,8 @@ import ml.northwestwind.survivalspectator.entity.FakePlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerProfileCache;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3d;
@@ -89,7 +91,7 @@ public class PositionData extends WorldSavedData {
 
     public void toSpectator(ServerPlayerEntity player) {
         positions.put(player.getUUID(), Pair.of(player.position(), player.level.dimension()));
-        FakePlayerEntity fake = FakePlayerEntity.createFake(player.getScoreboardName(), player.getServer(), player.getX(), player.getY(), player.getZ(), player.yRot, player.xRot, player.level.dimension(), GameType.SURVIVAL);
+        FakePlayerEntity fake = FakePlayerEntity.createFake(player.getScoreboardName(), player.getServer(), player.getX(), player.getY(), player.getZ(), player.yRot, player.xRot, player.level.dimension(), GameType.SURVIVAL, null);
         if (fake != null) playerPlaceholders.put(player.getUUID(), fake.getUUID());
         player.setGameMode(GameType.SPECTATOR);
     }
@@ -122,6 +124,18 @@ public class PositionData extends WorldSavedData {
     @Nullable
     public UUID getPlayerByFake(UUID uuid) {
         return playerPlaceholders.entrySet().stream().filter(entry -> entry.getValue().equals(uuid)).findFirst().orElseGet(() -> new NullEntry<>(uuid)).getKey();
+    }
+
+    public void reAddFake(MinecraftServer server) {
+        for (Map.Entry<UUID, UUID> entry : playerPlaceholders.entrySet()) {
+            if (!positions.containsKey(entry.getKey())) continue;
+            PlayerProfileCache.setUsesAuthentication(false);
+            String username = server.getProfileCache().get(entry.getKey()).getName();
+            PlayerProfileCache.setUsesAuthentication(server.isDedicatedServer() && server.isPublished());
+            Vector3d pos = positions.get(entry.getKey()).getLeft();
+            RegistryKey<World> dimension = positions.get(entry.getKey()).getRight();
+            FakePlayerEntity.createFake(username, server, pos.x, pos.y, pos.z, 0, 0, dimension, GameType.SURVIVAL, entry.getValue());
+        }
     }
 
     private static class NullEntry<K, V> implements Map.Entry<K, V> {

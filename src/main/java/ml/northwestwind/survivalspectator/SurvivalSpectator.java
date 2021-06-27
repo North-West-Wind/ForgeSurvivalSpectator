@@ -7,9 +7,9 @@ import net.minecraft.command.Commands;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.world.GameType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -49,5 +49,11 @@ public class SurvivalSpectator {
         public static void registerCommand(final RegisterCommandsEvent event) {
             SurvivalSpectatorCommand.register(event.getDispatcher());
         }
+
+        /* @SubscribeEvent
+        public static void worldLoad(final WorldEvent.Load event) {
+            ServerWorld world = (ServerWorld) event.getWorld();
+            PositionData.get(world).reAddFake(world.getServer());
+        } */
     }
 }
