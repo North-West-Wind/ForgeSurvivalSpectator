@@ -129,6 +129,7 @@ public class FakePlayerEntity extends ServerPlayerEntity
     {
         shakeOff();
         this.server.tell(new TickDelayedTask(this.server.getTickCount(), () -> this.connection.onDisconnect(reason)));
+        remove();
     }
 
     @Override

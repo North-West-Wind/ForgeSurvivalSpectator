@@ -126,18 +126,6 @@ public class PositionData extends WorldSavedData {
         return playerPlaceholders.entrySet().stream().filter(entry -> entry.getValue().equals(uuid)).findFirst().orElseGet(() -> new NullEntry<>(uuid)).getKey();
     }
 
-    public void reAddFake(MinecraftServer server) {
-        for (Map.Entry<UUID, UUID> entry : playerPlaceholders.entrySet()) {
-            if (!positions.containsKey(entry.getKey())) continue;
-            PlayerProfileCache.setUsesAuthentication(false);
-            String username = server.getProfileCache().get(entry.getKey()).getName();
-            PlayerProfileCache.setUsesAuthentication(server.isDedicatedServer() && server.isPublished());
-            Vector3d pos = positions.get(entry.getKey()).getLeft();
-            RegistryKey<World> dimension = positions.get(entry.getKey()).getRight();
-            FakePlayerEntity.createFake(username, server, pos.x, pos.y, pos.z, 0, 0, dimension, GameType.SURVIVAL, entry.getValue());
-        }
-    }
-
     private static class NullEntry<K, V> implements Map.Entry<K, V> {
         private V value;
 

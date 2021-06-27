@@ -49,11 +49,5 @@ public class SurvivalSpectator {
         public static void registerCommand(final RegisterCommandsEvent event) {
             SurvivalSpectatorCommand.register(event.getDispatcher());
         }
-
-        /* @SubscribeEvent
-        public static void worldLoad(final WorldEvent.Load event) {
-            ServerWorld world = (ServerWorld) event.getWorld();
-            PositionData.get(world).reAddFake(world.getServer());
-        } */
     }
 }
